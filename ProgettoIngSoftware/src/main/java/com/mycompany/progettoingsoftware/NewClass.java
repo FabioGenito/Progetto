@@ -10,5 +10,7 @@ package com.mycompany.progettoingsoftware;
  * @author User
  */
 public class NewClass {
+    public NewClass(){
     
+}
 }
