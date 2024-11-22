@@ -11,6 +11,7 @@ package com.mycompany.progettoingsoftware;
  */
 public class NewClass {
     public NewClass(){
+        System.out.println("Ciao Federico Cervo");
     
 }
 }
