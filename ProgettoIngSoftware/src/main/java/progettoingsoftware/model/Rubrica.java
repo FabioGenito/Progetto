@@ -10,10 +10,8 @@ import java.io.FileOutputStream;
 import java.util.Set;
 import java.util.TreeSet;
 
-/**
- *
- * @author Gruppo14
- */
+//@author Gruppo14
+
 public class Rubrica{
     
 private Set<Contatto> contatti;
@@ -25,8 +23,7 @@ private Set<Contatto> contatti;
     public void selezionaContatto(int i) {
         
     }
-    
-    //
+
     public void creaContatto(Contatto c) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -38,6 +35,7 @@ private Set<Contatto> contatti;
     public void eliminaContatto(Contatto c) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
 
     public TreeSet<Contatto> ricercaContatto(String s) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
