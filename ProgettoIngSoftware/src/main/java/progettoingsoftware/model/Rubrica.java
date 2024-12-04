@@ -5,12 +5,14 @@
  */
 package progettoingsoftware.model;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.Set;
 import java.util.TreeSet;
 
 /**
  *
- * @author User
+ * @author 
  */
 public class Rubrica{
     
@@ -20,27 +22,19 @@ private Set<Contatto> contatti;
         this.contatti = contatti;
     }
     
-    public void creaContatto() {
+    public void creaContatto(Contatto c) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void modificaContatto() {
+    public void modificaContatto(Contatto c) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void eliminaContatto() {
+    public void eliminaContatto(Contatto c) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public TreeSet<Contatto> ricercaContatto() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void esportaRubrica() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public TreeSet<Contatto> importaRubrica() {
+    public TreeSet<Contatto> ricercaContatto(Contatto c) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
