@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author User
+ * @author Gruppo14
  */
 public class Applicazione extends Application{
 

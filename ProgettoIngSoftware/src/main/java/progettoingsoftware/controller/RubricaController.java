@@ -13,7 +13,7 @@ import javafx.fxml.Initializable;
 /**
  * FXML Controller class
  *
- * @author User
+ * @author Gruppo14
  */
 public class RubricaController implements Initializable {
 

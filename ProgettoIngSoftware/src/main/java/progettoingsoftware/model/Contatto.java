@@ -7,8 +7,9 @@ package progettoingsoftware.model;
 
 /**
  *
- * @author User
+ * @author Gruppo14
  */
+
 public class Contatto {
     private String nome;
     private String cognome;
