@@ -157,10 +157,20 @@ public class RubricaController implements Initializable {
         
     }
 
+    /**
+    * @brief Invoca il metodo dedicato per esportare la Rubrica su un File Esterno
+    * 
+    * @param[in] event Click sul Pulsante "Esporta Rubrica"
+    */
     @FXML
     private void esportList(ActionEvent event) {
     }
 
+    /**
+    * @brief Invoca il metodo dedicato per importare da un File esterno una Lista di Contatti
+    * 
+    * @param event 
+    */
     @FXML
     private void importList(ActionEvent event) {
     }
