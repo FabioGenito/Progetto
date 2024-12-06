@@ -10,4 +10,19 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
+    <dependencies>
+    <!-- Dipendenza per i controlli JavaFX -->
+    <dependency>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-controls</artifactId>
+        <version>20</version> <!-- Sostituisci con la versione corretta -->
+    </dependency>
+
+    <!-- Dipendenza per il supporto FXML -->
+    <dependency>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-fxml</artifactId>
+        <version>20</version> <!-- Sostituisci con la versione corretta -->
+    </dependency>
+    </dependencies>
 </project>

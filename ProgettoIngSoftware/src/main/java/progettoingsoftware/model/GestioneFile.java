@@ -12,7 +12,7 @@ import java.util.ArrayList;
 /**
  * @brief Classe adibita alla gestione di operazioni su File
  * 
- * @author User
+ * @author Gruppo14
  */
 
 public class GestioneFile {

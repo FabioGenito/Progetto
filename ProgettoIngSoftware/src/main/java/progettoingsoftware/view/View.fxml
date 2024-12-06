@@ -12,29 +12,29 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<SplitPane dividerPositions="0.29797979797979796" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171">
+<SplitPane dividerPositions="0.29797979797979796" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="progettoingsoftware.controller.RubricaController">
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
          <children>
             <VBox prefHeight="598.0" prefWidth="234.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
                <children>
                   <Label text="Nome" />
-                  <TextField />
+                  <TextField fx:id="nameField" />
                   <Label layoutX="10.0" layoutY="10.0" text="Cognome" />
-                  <TextField layoutX="10.0" layoutY="31.0" />
+                  <TextField fx:id="surnameField" layoutX="10.0" layoutY="31.0" />
                   <Label layoutX="10.0" layoutY="62.0" text="Numeri" />
-                  <TextField layoutX="10.0" layoutY="83.0" />
-                  <TextField layoutX="10.0" layoutY="249.0" />
-                  <TextField layoutX="10.0" layoutY="135.0" />
+                  <TextField fx:id="number1Field" layoutX="10.0" layoutY="83.0" />
+                  <TextField fx:id="number2Field" layoutX="10.0" layoutY="249.0" />
+                  <TextField fx:id="number3Field" layoutX="10.0" layoutY="135.0" />
                   <Label layoutX="10.0" layoutY="114.0" text="E-Mail" />
-                  <TextField layoutX="10.0" layoutY="135.0" />
-                  <TextField layoutX="10.0" layoutY="135.0" />
-                  <TextField layoutX="10.0" layoutY="218.0" />
+                  <TextField fx:id="mail1Field" layoutX="10.0" layoutY="135.0" />
+                  <TextField fx:id="mail2Field" layoutX="10.0" layoutY="135.0" />
+                  <TextField fx:id="mail3Field" layoutX="10.0" layoutY="218.0" />
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Aggiungi" />
-                        <Button mnemonicParsing="false" text="Salva" />
-                        <Button mnemonicParsing="false" text="Elimina" />
+                        <Button fx:id="AddButton" mnemonicParsing="false" onAction="#add" text="Aggiungi" />
+                        <Button fx:id="modButton" mnemonicParsing="false" onAction="#mod" text="Salva" />
+                        <Button fx:id="delButton" mnemonicParsing="false" onAction="#del" text="Elimina" />
                      </children>
                   </HBox>
                </children>
@@ -44,20 +44,20 @@
          <children>
             <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="45.0" prefWidth="556.0">
                <items>
-                  <TextField />
+                  <TextField fx:id="searchField" onKeyTyped="#search" />
                   <Label text="Ricerca">
                      <padding>
                         <Insets right="35.0" />
                      </padding>
                   </Label>
-                  <Button layoutX="255.0" layoutY="10.0" mnemonicParsing="false" text="Esporta Rubrica" />
-                  <Button mnemonicParsing="false" text="Importa Rubrica" />
+                  <Button fx:id="Esport" layoutX="255.0" layoutY="10.0" mnemonicParsing="false" onAction="#esportList" text="Esporta Rubrica" />
+                  <Button fx:id="Import" mnemonicParsing="false" onAction="#importList" text="Importa Rubrica" />
                </items>
             </ToolBar>
-            <TableView layoutY="45.0" prefHeight="555.0" prefWidth="556.0" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
+            <TableView fx:id="Tabella" layoutY="45.0" prefHeight="555.0" prefWidth="556.0" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
               <columns>
-                <TableColumn prefWidth="128.0" text="Nome" />
-                <TableColumn prefWidth="139.0" text="Cognome" />
+                <TableColumn fx:id="nameClm" prefWidth="128.0" text="Nome" />
+                <TableColumn fx:id="surnameClm" prefWidth="139.0" text="Cognome" />
                   <TableColumn prefWidth="144.0" text="Primo Numero" />
                   <TableColumn prefWidth="144.0" text="Prima E-Mail" />
               </columns>
