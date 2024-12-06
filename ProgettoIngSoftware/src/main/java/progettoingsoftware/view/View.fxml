@@ -58,8 +58,8 @@
               <columns>
                 <TableColumn fx:id="nameClm" prefWidth="128.0" text="Nome" />
                 <TableColumn fx:id="surnameClm" prefWidth="139.0" text="Cognome" />
-                  <TableColumn prefWidth="144.0" text="Primo Numero" />
-                  <TableColumn prefWidth="144.0" text="Prima E-Mail" />
+                  <TableColumn fx:id="numClm" prefWidth="144.0" text="Primo Numero" />
+                  <TableColumn fx:id="mailClm" prefWidth="144.0" text="Prima E-Mail" />
               </columns>
             </TableView>
          </children></AnchorPane>

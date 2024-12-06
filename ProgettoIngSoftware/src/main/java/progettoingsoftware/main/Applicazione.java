@@ -13,7 +13,8 @@ import javafx.stage.Stage;
  */
 
 /**
- *
+ * @brief è il Main che inizializza l'applicazione.
+ * 
  * @author Gruppo14
  */
 public class Applicazione extends Application{

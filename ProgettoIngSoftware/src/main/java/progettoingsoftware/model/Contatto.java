@@ -19,10 +19,10 @@ public class Contatto {
     /**
     * @brief Costruttore della classe Contatto.
     *
-    * @param nome
+    * @param[in] nome Nome del contatto.
     * @param[in] cognome Cognome del contatto.
-    * @param[in] mail Mail del contatto.
-    * @param[in] num Numeri del contatto
+    * @param[in] mail[] Mail del contatto.
+    * @param[in] num[] Numeri del contatto.
     */
     public Contatto(String nome, String cognome, String[] mail, String[] num) {
         this.nome = nome;
@@ -43,28 +43,30 @@ public class Contatto {
     /**
     * @brief Ottiene il cognome del Contatto
     * 
-    * @return cognome Il conome del contatto.
+    * @return cognome Il cognome del contatto.
     */
     public String getCognome() {
         return cognome;
     }
     
     /**
-    * @brief Ottiene le mail del Contatto
+    * @brief Ottiene la mail i-esima del Contatto
     * 
-    * @return mail Le mail del contatto.
+    * @param[in] i Indice della Mail.
+    * @return mail La mail i-esima del contatto.
     */
-    public String[] getMail() {
-        return mail;
+    public String getMail(int i) {
+        return mail[i];
     }
 
     /**
-    * @brief Ottiene i numeri di telfono del Contatto
+    * @brief Ottiene il numero di telefono i-esimo del Contatto
     * 
-    * @return num I numeri del Contatto.
+    * @param[in] i Indice del Numero
+    * @return num Il numero i-esimo del Contatto.
     */
-    public String[] getNum() {
-        return num;
+    public String getNum(int i) {
+        return num[i];
     }
 
     /**
@@ -88,18 +90,20 @@ public class Contatto {
     /**
     * @brief Imposta le mail del contatto.
     * 
+    * @param[in] i L'indice del contatto da impostare.
     * @param[in] mail Le mail del contatto.
     */
-    public void setMail(String[] mail) {
-        this.mail = mail;
+    public void setMail(String mail, int i) {
+        this.mail[i] = mail;
     }
     
     /**
     * @brief Imposta i numeri del contatto.
     * 
     * @param[in] num I nuovi numeri del contatto.
+    * @param[in] i L'indice del contatto da impostare.
     */
-    public void setNum(String[] num) {
-        this.num = num;
+    public void setNum(String num, int i) {
+        this.num[i] = num;
     }
 }

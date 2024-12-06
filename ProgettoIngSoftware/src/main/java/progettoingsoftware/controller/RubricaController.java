@@ -66,6 +66,10 @@ public class RubricaController implements Initializable {
     private Button Esport;
     @FXML
     private Button Import;
+    @FXML
+    private TableColumn<Contatto, String> numClm;
+    @FXML
+    private TableColumn<Contatto, String> mailClm;
 
     /**
      * Initializes the controller class.
@@ -78,10 +82,12 @@ public class RubricaController implements Initializable {
 
         nameClm.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNome()));
         surnameClm.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCognome()));
+        numClm.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNum(0)));
+        mailClm.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getMail(0)));
     }    
 
     /**
-    * Aggiunta di un Contatto
+    * @brief Aggiunta di un Contatto
     * 
     * 
     * Provvede alla creazione di una nuova Istanza della 
@@ -169,7 +175,7 @@ public class RubricaController implements Initializable {
     /**
     * @brief Invoca il metodo dedicato per importare da un File esterno una Lista di Contatti
     * 
-    * @param event 
+    * @param[in] event Click sul Pulsante "Importa Rubrica"
     */
     @FXML
     private void importList(ActionEvent event) {
