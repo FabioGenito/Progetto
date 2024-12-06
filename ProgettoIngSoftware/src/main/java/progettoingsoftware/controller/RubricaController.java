@@ -87,15 +87,25 @@ public class RubricaController implements Initializable {
     }    
 
     /**
-    * @brief Aggiunta di un Contatto
+    * @brief Aggiunta di un Contatto.
     * 
     * 
     * Provvede alla creazione di una nuova Istanza della 
     * classe "Contatto" , all'aggiunta di tale istanza nella
     * lista grafica e nella struttura dati sottostante.
+    * Guarda Anche il metodo aggiungiContatto() della classe Rubrica.
     * 
     * 
-    * @param[in] event Click tasto "Aggiungi"
+    * @param[in] event Click tasto "Aggiungi".
+    * 
+    * @pre  I campi "nameField" e "surnameField" devono essere compilati almeno in parte. I campi opzionali "number1Field", "number2Field"
+    *       "number3Field", "mail1Field", "mail2Field", "mail3Field" possono essere vuoti.
+    *       
+    * @post Un nuovo contatto è aggiunto sia alla lista grafica che alla struttura dati sottostante.
+    *       
+    * @invariant La lista dei contatti deve essere coerente con la struttura dati sottostante.
+    * 
+    * @see aggiungiContatto().
     */
     @FXML
     private void add(ActionEvent event) {
@@ -124,39 +134,65 @@ public class RubricaController implements Initializable {
     }
 
     /**
-    * @brief Modifica delle informazioni di un Contatto
+    * @brief Modifica delle informazioni di un Contatto.
     * 
     * Provvede alla modifica del contatto
     * selezionato (nella lista grafica), aggiornando sia
     * la lista grafica che la struttura dati.
+    * Guarda anche il metodo modificaContatto() della classe Rubrica.
     * 
     * @param[in] event Click del pulsante "Salva"
+    * @pre Deve essere selezionato un contatto valido nella lista.
+    * 
+    * @post Il contatto modificato riflette le nuove informazioni sia nella lista grafica che nella struttura dati.
+    *      
+    * @invariant La lista dei contatti e la struttura dati sottostante devono rimanere sincronizzate.
+    * 
+    * @see modificaContatto().
     */
     @FXML
     private void mod(ActionEvent event) {
     }
 
     /**
-    * @brief Rimozione dalla Lista
+    * @brief Rimozione dalla Lista.
     * 
     * 
     * Provvede alla rimozione del contatto
     * selezionato (nella lista grafica), aggiornando 
     * sia la lista grafica che la struttura dati.
+    * Guarda anche il metodo eliminaContatto() della classe Rubrica
     * 
-    * @param[in] event Pressione del pulsante "Elimina"
+    * @param[in] event Pressione del pulsante "Elimina".
+    * 
+    * @pre Deve essere selezionato un contatto valido nella lista.
+    * 
+    * @post Il contatto selezionato è rimosso dalla lista grafica e dalla struttura dati.
+    *      
+    * @invariant La lista grafica e la struttura dati devono essere coerenti dopo la rimozione.
+    * 
+    * @see eliminaContatto().
     */
     @FXML
     private void del(ActionEvent event) {
     }
 
     /**
-    * @brief Ricerca di un Contatto
+    * @brief Ricerca di un Contatto.
     * 
     * Provvede al filtraggio grafico della lista
-    * in funzione del contenuto della stringa di ricerca
+    * in funzione del contenuto della stringa di ricerca.
+    * Guarda anche il metodo ricercaContatto() della classe Rubrica.
     * 
     * @param[in] event Cambiamenti del testo nella Barra di Ricerca
+    * 
+    * @pre La lista grafica deve essere inizializzata e contenere almeno un elemento.
+    *      
+    * @post I risultati del filtraggio sono visibili nella lista grafica in tempo reale.
+    *       
+    * @invariant La struttura dati sottostante non è alterata  dal processo di ricerca.
+    * 
+    * @see ricercaContatto().
     */
     @FXML
     private void search(KeyEvent event) {
@@ -164,18 +200,36 @@ public class RubricaController implements Initializable {
     }
 
     /**
-    * @brief Invoca il metodo dedicato per esportare la Rubrica su un File Esterno
+    * @brief Invoca il metodo dedicato per esportare la Rubrica su un File Esterno.
+    * Guarda anche il metodo esportaRubrica() della classe GestioneFile.
     * 
-    * @param[in] event Click sul Pulsante "Esporta Rubrica"
+    * @param[in] event Click sul Pulsante "Esporta Rubrica".
+    * 
+    * @pre La rubrica deve contenere almeno un contatto.
+    * 
+    * @post Il file esterno contenente i contatti è generato correttamente.
+    *       
+    * @invariant La struttura dati della rubrica non è alterata dal processo di esportazione.
+    * 
+    * @see esportaRubrica().
     */
     @FXML
     private void esportList(ActionEvent event) {
     }
 
     /**
-    * @brief Invoca il metodo dedicato per importare da un File esterno una Lista di Contatti
+    * @brief Invoca il metodo dedicato per importare da un File esterno una Lista di Contatti.
+    * Guarda anche il metodo importaFile() della classe GestioneFile.
     * 
-    * @param[in] event Click sul Pulsante "Importa Rubrica"
+    * @param[in] event Click sul Pulsante "Importa Rubrica".
+    * 
+    * @pre Il file esterno deve essere valido e formattato correttamente.
+    *      
+    * @post La rubrica è aggiornata con i contatti importati.
+    * 
+    * @invariant La struttura dati della rubrica deve essere coerente dopo l'importazione.
+    * 
+    * @see importaFile().
     */
     @FXML
     private void importList(ActionEvent event) {

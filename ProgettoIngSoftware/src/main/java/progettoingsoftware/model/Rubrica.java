@@ -47,8 +47,11 @@ public class Rubrica{
 
     /**
     * @brief Modifica le Informazioni di un Contatto della Lista
+    * Guarda anche i metodi setter della classe Contatto.
     * 
     * @param[in] c Contatto da Modificare nella Lista.
+    * 
+    * @see setNome(), setCognome(), setNum(), setMail().
     */
     public void modificaContatto(Contatto c) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -58,6 +61,7 @@ public class Rubrica{
     * @brief Rimuove un Contatto dalla Lista
     * 
     * @param[in] c Contatto da rimuovere dalla Lista.
+    * 
     */
     public void eliminaContatto(Contatto c) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -72,6 +76,7 @@ public class Rubrica{
     * o inizi per essa 
     * 
     * @param[in] s Stringa con cui ricercare corrispondenze nella Lista.
+    * 
     * @return lista Lista Filtrata.
     */
     public TreeSet<Contatto> ricercaContatto(String s) {

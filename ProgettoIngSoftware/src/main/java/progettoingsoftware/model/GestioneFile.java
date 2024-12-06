@@ -34,6 +34,7 @@ public class GestioneFile {
     * eventualmente già esistente nel sistema.
     * 
     * @param[in] file File Sorgente 
+    * 
     * @return newRubrica Rubrica 
     */    
     public ArrayList<Contatto> importaRubrica(FileInputStream file) {
