@@ -87,7 +87,7 @@ public class RubricaController implements Initializable {
     }    
 
     
-    private boolean isValidNumber(String number) {
+  private boolean isValidNumber(String number) {
         return number.matches("\\d+");
     }
     
