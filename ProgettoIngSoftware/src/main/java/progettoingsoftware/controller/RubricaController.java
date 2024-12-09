@@ -88,16 +88,45 @@ public class RubricaController implements Initializable {
         mailClm.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getMail(0)));
     }    
 
-    
+    /**
+    * @brief Verifica del numero di telefono
+    * 
+    * @param[in] number Numero di telefono 
+    * @pre Deve essere inserito una stringa numerica.
+    * 
+    * @post Se il numero inserito presenta dei caratteri non numerici viene restituito False
+    * 
+   
+    */
   private boolean isValidNumber(String number) {
         return number.matches("\\d+");
     }
     
+    /**
+    * @brief Verifica e-mail
+    * 
+    * @param[in] mail 
+    * @pre Deve essere inserito una e-mail.
+    * 
+    * @post Se la mail inserita presenta uno spazio iniziale, una "@" iniziale
+    *       un dominio non valido, o l'assenza della "@" viene restituito False
+    * 
+   
+    */
     private boolean isValidEmail(String mail) {
         return mail.matches("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$");
     }
     
-    
+    /**
+    * @brief mostra Avviso
+    * 
+    * @param[in] txt Messaggio di errore 
+    * 
+    * 
+    *@post Viene creata una finestra di avviso relativa all'errore
+    * 
+   
+    */
     private void showAlert(String txt) {
         Alert alert = new Alert(ERROR);
         alert.setTitle("Alert");
@@ -114,6 +143,9 @@ public class RubricaController implements Initializable {
     * classe "Contatto" , all'aggiunta di tale istanza nella
     * lista grafica e nella struttura dati sottostante.
     * Guarda Anche il metodo aggiungiContatto() della classe Rubrica.
+    * Se non viene compilati i campi nome e cognome viene invocato il metodo showAlert(),
+    * Viene effettuato un controllo sui campi numero e mail per verificarne la validità
+    *   attraverso i metodi isValidEmail(),isValidNumber().
     * 
     * 
     * @param[in] event Click tasto "Aggiungi".
@@ -125,7 +157,7 @@ public class RubricaController implements Initializable {
     *       
     * @invariant La lista dei contatti deve essere coerente con la struttura dati sottostante.
     * 
-    * @see aggiungiContatto().
+    * @see aggiungiContatto(), isValidEmail(),isValidNumber(),showAlert().
     */
    @FXML
     private void add(ActionEvent event) {
