@@ -13,6 +13,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import static javafx.scene.control.Alert.AlertType.ERROR;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -96,6 +98,14 @@ public class RubricaController implements Initializable {
     }
     
     
+    private void showAlert(String txt) {
+        Alert alert = new Alert(ERROR);
+        alert.setTitle("Alert");
+        alert.setContentText(txt);
+        alert.showAndWait();
+    }
+    
+    
     /**
     * @brief Aggiunta di un Contatto.
     * 
@@ -117,21 +127,41 @@ public class RubricaController implements Initializable {
     * 
     * @see aggiungiContatto().
     */
-    @FXML
+   @FXML
     private void add(ActionEvent event) {
         String[] numeri = new String[3];
         numeri[0] = number1Field.getText();
         numeri[1] = number2Field.getText();
         numeri[2] = number3Field.getText();
+        
+        if(nameField.getText().isEmpty() && surnameField.getText().isEmpty()) {
+            showAlert("Devi compilare almeno un campo tra nome e cognome");
+            return;
+        }
+        
+        for(String numero : numeri) {
+            if(!numero.isEmpty() && !isValidNumber(numero)) {
+                showAlert("Il numero non può contenere caratteri");
+                return;
+            }
+        }
 
         String[] mail = new String[3];
         mail[0] = mail1Field.getText();
         mail[1] = mail2Field.getText();
         mail[2] = mail3Field.getText();
+        
+        for(String email : mail) {
+            if(!email.isEmpty() && !isValidEmail(email)) {
+                showAlert("La mail non è valida");
+                return;
+            }
+        }
 
         Contatto c = new Contatto(nameField.getText(), surnameField.getText(), mail, numeri);
         rubrica.aggiungiContatto(c); 
         listaContatti.add(c); 
+        Tabella.getSortOrder().add(surnameClm);
 
         nameField.clear();
         surnameField.clear();
