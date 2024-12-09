@@ -86,6 +86,9 @@ public class RubricaController implements Initializable {
         surnameClm.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCognome()));
         numClm.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNum(0)));
         mailClm.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getMail(0)));
+        
+        surnameClm.setSortType(TableColumn.SortType.ASCENDING);
+        Tabella.getSortOrder().add(surnameClm);
     }    
 
     /**
