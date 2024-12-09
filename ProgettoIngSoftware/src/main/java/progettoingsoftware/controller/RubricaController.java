@@ -86,6 +86,16 @@ public class RubricaController implements Initializable {
         mailClm.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getMail(0)));
     }    
 
+    
+    private boolean isValidNumber(String number) {
+        return number.matches("\\d+");
+    }
+    
+    private boolean isValidEmail(String mail) {
+        return mail.matches("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$");
+    }
+    
+    
     /**
     * @brief Aggiunta di un Contatto.
     * 
