@@ -96,7 +96,6 @@ public class RubricaController implements Initializable {
     * 
     * @post Se il numero inserito presenta dei caratteri non numerici viene restituito False
     * 
-   
     */
   private boolean isValidNumber(String number) {
         return number.matches("\\d+");
@@ -111,7 +110,6 @@ public class RubricaController implements Initializable {
     * @post Se la mail inserita presenta uno spazio iniziale, una "@" iniziale
     *       un dominio non valido, o l'assenza della "@" viene restituito False
     * 
-   
     */
     private boolean isValidEmail(String mail) {
         return mail.matches("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$");
@@ -125,7 +123,6 @@ public class RubricaController implements Initializable {
     * 
     *@post Viene creata una finestra di avviso relativa all'errore
     * 
-   
     */
     private void showAlert(String txt) {
         Alert alert = new Alert(ERROR);
@@ -247,6 +244,10 @@ public class RubricaController implements Initializable {
     */
     @FXML
     private void del(ActionEvent event) {
+        Contatto c = Tabella.getSelectionModel().getSelectedItem();
+        rubrica.eliminaContatto(c);
+        listaContatti.remove(c);
+        Tabella.getSortOrder().add(surnameClm);
     }
 
     /**
