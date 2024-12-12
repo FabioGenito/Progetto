@@ -36,17 +36,17 @@ public class RubricaController implements Initializable {
     @FXML
     private TextField surnameField;
     @FXML
-    private TextField number1Field;
+    private TextField numberField1;
     @FXML
-    private TextField number2Field;
+    private TextField numberField2;
     @FXML
-    private TextField number3Field;
+    private TextField numberField3;
     @FXML
-    private TextField mail1Field;
+    private TextField mailField1;
     @FXML
-    private TextField mail2Field;
+    private TextField mailField2;
     @FXML
-    private TextField mail3Field;
+    private TextField mailField3;
     @FXML
     private Button AddButton;
     @FXML
@@ -178,12 +178,12 @@ public class RubricaController implements Initializable {
     private void clear() {
         nameField.clear();
         surnameField.clear();
-        number1Field.clear();
-        number2Field.clear();
-        number3Field.clear();
-        mail1Field.clear();
-        mail2Field.clear();
-        mail3Field.clear();
+        numberField1.clear();
+        numberField2.clear();
+        numberField3.clear();
+        mailField1.clear();
+        mailField2.clear();
+        mailField3.clear();
     }
     
     
@@ -214,9 +214,9 @@ public class RubricaController implements Initializable {
    @FXML
     private void add(ActionEvent event) {
         String[] numeri = new String[3];
-        numeri[0] = number1Field.getText();
-        numeri[1] = number2Field.getText();
-        numeri[2] = number3Field.getText();
+        numeri[0] = numberField1.getText();
+        numeri[1] = numberField2.getText();
+        numeri[2] = numberField3.getText();
         
         if(nameField.getText().isEmpty() && surnameField.getText().isEmpty()) {
             showAlert("Devi compilare almeno un campo tra nome e cognome");
@@ -231,9 +231,9 @@ public class RubricaController implements Initializable {
         }
 
         String[] mail = new String[3];
-        mail[0] = mail1Field.getText();
-        mail[1] = mail2Field.getText();
-        mail[2] = mail3Field.getText();
+        mail[0] = mailField1.getText();
+        mail[1] = mailField2.getText();
+        mail[2] = mailField3.getText();
         
         for(String email : mail) {
             if(!email.isEmpty() && !isValidEmail(email)) {
@@ -268,8 +268,8 @@ public class RubricaController implements Initializable {
     */
     @FXML
     private void mod(ActionEvent event) {
-        String numeri[] = {number1Field.getText(), number2Field.getText(), number3Field.getText()};
-        String mail[] = {mail1Field.getText(), mail2Field.getText(), mail3Field.getText()};
+        String numeri[] = {numberField1.getText(), numberField2.getText(), numberField3.getText()};
+        String mail[] = {mailField1.getText(), mailField2.getText(), mailField3.getText()};
         
         if(verifica(numeri, mail)) {     // Chiamo la funzione di Verifica delle modifiche effettuate
             Contatto c = new Contatto(nameField.getText(), surnameField.getText(), numeri, mail); 
@@ -371,12 +371,12 @@ public class RubricaController implements Initializable {
 	Contatto c = Tabella.getSelectionModel().getSelectedItem();
         nameField.setText(c.getNome());
         surnameField.setText(c.getCognome());
-        number1Field.setText(c.getNum(0));
-	number2Field.setText(c.getNum(1));
-        number3Field.setText(c.getNum(2));
-        mail1Field.setText(c.getMail(0));
-        mail2Field.setText(c.getMail(1));
-        mail3Field.setText(c.getMail(2));        
+        numberField1.setText(c.getNum(0));
+	numberField2.setText(c.getNum(1));
+        numberField3.setText(c.getNum(2));
+        mailField1.setText(c.getMail(0));
+        mailField2.setText(c.getMail(1));
+        mailField3.setText(c.getMail(2));        
     }
 }
 

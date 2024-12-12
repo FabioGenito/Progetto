@@ -23,13 +23,13 @@
                   <Label layoutX="10.0" layoutY="10.0" text="Cognome" />
                   <TextField fx:id="surnameField" layoutX="10.0" layoutY="31.0" />
                   <Label layoutX="10.0" layoutY="62.0" text="Numeri" />
-                 <TextField fx:id="number1Field" layoutX="10.0" layoutY="83.0" />
-                 <TextField fx:id="number2Field" layoutX="10.0" layoutY="249.0" />
-                 <TextField fx:id="number3Field" layoutX="10.0" layoutY="135.0" />
+                 <TextField fx:id="numberField1" layoutX="10.0" layoutY="83.0" />
+                 <TextField fx:id="numberField2" layoutX="10.0" layoutY="249.0" />
+                 <TextField fx:id="numberField3" layoutX="10.0" layoutY="135.0" />
                   <Label layoutX="10.0" layoutY="114.0" text="E-Mail" />
-                  <TextField fx:id="mail1Field" layoutX="10.0" layoutY="135.0" />
-                    <TextField fx:id="mail2Field" layoutX="10.0" layoutY="135.0" />
-                    <TextField fx:id="mail3Field" layoutX="10.0" layoutY="218.0" />
+                  <TextField fx:id="mailField1" layoutX="10.0" layoutY="135.0" />
+                    <TextField fx:id="mailField2" layoutX="10.0" layoutY="135.0" />
+                    <TextField fx:id="mailField3" layoutX="10.0" layoutY="218.0" />
                   <HBox alignment="CENTER" prefHeight="81.0" prefWidth="214.0">
                      <children>
                         <Button fx:id="AddButton" mnemonicParsing="false" onAction="#add" text="Aggiungi" />
@@ -58,8 +58,8 @@
                <items>
                   <HBox alignment="TOP_RIGHT" layoutX="10.0" layoutY="10.0">
                      <children>
-                        <Button fx:id="Esport" mnemonicParsing="false" onAction="#esportaLista" text="Esporta Rubrica" />
-                        <Button fx:id="Import" mnemonicParsing="false" onAction="#importaLista" text="Importa Rubrica" />
+                        <Button fx:id="Esport" mnemonicParsing="false" onAction="#esportList" text="Esporta Rubrica" />
+                        <Button fx:id="Import" mnemonicParsing="false" onAction="#importList" text="Importa Rubrica" />
                      </children>
                   </HBox>
                   <HBox alignment="BASELINE_RIGHT" prefHeight="31.0" prefWidth="299.0">
