@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package progettoingsoftware.controller;
+package com.mycompany.testfunzionante.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,8 +20,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
-import progettoingsoftware.model.Contatto;
-import progettoingsoftware.model.Rubrica;
+import com.mycompany.testfunzionante.model.*;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -312,3 +312,4 @@ public class RubricaController implements Initializable {
     }
     
 }
+
