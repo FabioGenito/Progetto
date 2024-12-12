@@ -32,9 +32,9 @@
                     <TextField fx:id="mailField3" layoutX="10.0" layoutY="218.0" />
                   <HBox alignment="CENTER" prefHeight="81.0" prefWidth="214.0">
                      <children>
-                        <Button fx:id="AddButton" mnemonicParsing="false" onAction="#add" text="Aggiungi" />
-                        <Button fx:id="modButton" mnemonicParsing="false" onAction="#mod" text="Salva" />
-                        <Button fx:id="delButton" mnemonicParsing="false" onAction="#del" text="Elimina" />
+                        <Button fx:id="AddButton" mnemonicParsing="false" onAction="#aggiungi" text="Aggiungi" />
+                        <Button fx:id="modButton" mnemonicParsing="false" onAction="#modifica" text="Salva" />
+                        <Button fx:id="delButton" mnemonicParsing="false" onAction="#rimuovi" text="Elimina" />
                      </children>
                   </HBox>
                </children>
@@ -42,24 +42,24 @@
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
          <children>
-            <TableView fx:id="Tabella" layoutY="44.0" onMouseClicked="#selection" prefHeight="556.0" prefWidth="549.0" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-244.0" AnchorPane.topAnchor="44.0">
+            <TableView fx:id="Tabella" layoutY="44.0" onMouseClicked="#seleziona" prefHeight="556.0" prefWidth="549.0" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-244.0" AnchorPane.topAnchor="44.0">
               <columns>
                 <TableColumn fx:id="nameClm" prefWidth="120.0" resizable="false" sortType="DESCENDING" text="Nome" />
                 <TableColumn fx:id="surnameClm" prefWidth="120.0" resizable="false" sortType="DESCENDING" text="Cognome" />
                   <TableColumn fx:id="numClm" prefWidth="120.0" resizable="false" sortable="false" text="Primo Numero" />
                   <TableColumn fx:id="mailClm" prefWidth="130.0" resizable="false" sortable="false" text="Prima E-Mail" />
-                  <TableColumn fx:id="numClm2" prefWidth="120.0" resizable="false" sortable="false" text="Secondo Numero" />
-                  <TableColumn fx:id="numClm3" prefWidth="120.0" resizable="false" sortable="false" text="Terzo Numero" />
-                  <TableColumn fx:id="mailClm2" prefWidth="130.0" resizable="false" sortable="false" text="Seconda Mail" />
-                  <TableColumn fx:id="mailClm3" prefWidth="130.0" resizable="false" sortable="false" text="Terza Mail" />
+                  <TableColumn fx:id="numClm2" prefWidth="120.0" resizable="false" sortable="false" text="Secondo Numero" visible="false" />
+                  <TableColumn fx:id="numClm3" prefWidth="120.0" resizable="false" sortable="false" text="Terzo Numero" visible="false" />
+                  <TableColumn fx:id="mailClm2" prefWidth="130.0" resizable="false" sortable="false" text="Seconda Mail" visible="false" />
+                  <TableColumn fx:id="mailClm3" prefWidth="130.0" resizable="false" sortable="false" text="Terza Mail" visible="false" />
               </columns>
             </TableView>
             <ToolBar maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="45.0" prefWidth="849.0" AnchorPane.topAnchor="0.0">
                <items>
                   <HBox alignment="TOP_RIGHT" layoutX="10.0" layoutY="10.0">
                      <children>
-                        <Button fx:id="Esport" mnemonicParsing="false" onAction="#esportList" text="Esporta Rubrica" />
-                        <Button fx:id="Import" mnemonicParsing="false" onAction="#importList" text="Importa Rubrica" />
+                        <Button fx:id="Esport" mnemonicParsing="false" onAction="#esportaLista" text="Esporta Rubrica" />
+                        <Button fx:id="Import" mnemonicParsing="false" onAction="#importaLista" text="Importa Rubrica" />
                      </children>
                   </HBox>
                   <HBox alignment="BASELINE_RIGHT" prefHeight="31.0" prefWidth="299.0">
@@ -68,7 +68,7 @@
                            <HBox.margin>
                               <Insets />
                            </HBox.margin></Label>
-                        <TextField fx:id="searchField" onKeyTyped="#search" prefHeight="31.0" prefWidth="166.0" />
+                        <TextField fx:id="searchField" onKeyTyped="#cerca" prefHeight="31.0" prefWidth="166.0" />
                      </children>
                      <padding>
                         <Insets left="50.0" />
