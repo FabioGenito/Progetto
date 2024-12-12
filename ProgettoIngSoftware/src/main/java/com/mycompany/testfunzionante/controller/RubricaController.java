@@ -364,24 +364,19 @@ public class RubricaController implements Initializable {
     @FXML
     private void importList(ActionEvent event) {
     }
-
+    
+    
     @FXML
     private void selection(MouseEvent event) {
+	Contatto c = Tabella.getSelectionModel().getSelectedItem();
+        nameField.setText(c.getNome());
+        surnameField.setText(c.getCognome());
+        number1Field.setText(c.getNum(0));
+	number2Field.setText(c.getNum(1));
+        number3Field.setText(c.getNum(2));
+        mail1Field.setText(c.getMail(0));
+        mail2Field.setText(c.getMail(1));
+        mail3Field.setText(c.getMail(2));        
     }
-    
-    
-    @FXML
-	    private void selection(MouseEvent event) {
-	        Contatto c = Tabella.getSelectionModel().getSelectedItem();
-	        nameField.setText(c.getNome());
-	        surnameField.setText(c.getCognome());
-	        number1Field.setText(c.getNum(0));
-	        number2Field.setText(c.getNum(1));
-	        number3Field.setText(c.getNum(2));
-	        mail1Field.setText(c.getMail(0));
-	        mail2Field.setText(c.getMail(1));
-	        mail3Field.setText(c.getMail(2));
-                
-           }
 }
 
