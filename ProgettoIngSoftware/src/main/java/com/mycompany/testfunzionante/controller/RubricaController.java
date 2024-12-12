@@ -92,7 +92,7 @@ public class RubricaController implements Initializable {
 
         nameClm.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNome()));
         surnameClm.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCognome()));
-        numClm.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNum(0)));
+        numClm.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNumero(0)));
         mailClm.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getMail(0)));
         
         surnameClm.setSortType(TableColumn.SortType.ASCENDING);
@@ -108,7 +108,7 @@ public class RubricaController implements Initializable {
     * @post Se il numero inserito presenta dei caratteri non numerici viene restituito False
     * 
     */
-    private boolean isValidNumber(String number) {
+    private boolean VerificaNumero(String number) {
         return number.matches("\\d+");
     }
     
@@ -122,7 +122,7 @@ public class RubricaController implements Initializable {
     *       un dominio non valido, o l'assenza della "@" viene restituito False
     * 
     */
-    private boolean isValidEmail(String mail) {
+    private boolean VerificaEmail(String mail) {
         return mail.matches("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$");
     }
     
@@ -139,20 +139,20 @@ public class RubricaController implements Initializable {
     */
     private boolean verifica(String[] numeri, String[] mail) {
         if(nameField.getText().isEmpty() && surnameField.getText().isEmpty()) {
-            showAlert("Devi compilare almeno un campo tra nome e cognome");
+            mostraErrore("Devi compilare almeno un campo tra nome e cognome");
             return false;
         }
         
         for(String numero : numeri) {
-            if(!numero.isEmpty() && !isValidNumber(numero)) {
-                showAlert("Il numero non può contenere caratteri");
+            if(!numero.isEmpty() && !VerificaNumero(numero)) {
+                mostraErrore("Il numero non può contenere caratteri");
                 return false;
             }
         }
 
         for(String email : mail) {
-            if(!email.isEmpty() && !isValidEmail(email)) {
-                showAlert("La mail non è valida");
+            if(!email.isEmpty() && !VerificaEmail(email)) {
+                mostraErrore("La mail non è valida");
                 return false;
             }
         }
@@ -168,14 +168,14 @@ public class RubricaController implements Initializable {
     *@post Viene creata una finestra di avviso relativa all'errore
     * 
     */
-    private void showAlert(String txt) {
+    private void mostraErrore(String txt) {
         Alert alert = new Alert(ERROR);
         alert.setTitle("Alert");
         alert.setContentText(txt);
         alert.showAndWait();
     }
     
-    private void clear() {
+    private void pulisci() {
         nameField.clear();
         surnameField.clear();
         numberField1.clear();
@@ -212,20 +212,20 @@ public class RubricaController implements Initializable {
     * @see aggiungiContatto(), isValidEmail(),isValidNumber(),showAlert().
     */
    @FXML
-    private void add(ActionEvent event) {
+    private void aggiungi(ActionEvent event) {
         String[] numeri = new String[3];
         numeri[0] = numberField1.getText();
         numeri[1] = numberField2.getText();
         numeri[2] = numberField3.getText();
         
         if(nameField.getText().isEmpty() && surnameField.getText().isEmpty()) {
-            showAlert("Devi compilare almeno un campo tra nome e cognome");
+            mostraErrore("Devi compilare almeno un campo tra nome e cognome");
             return;
         }
         
         for(String numero : numeri) {
-            if(!numero.isEmpty() && !isValidNumber(numero)) {
-                showAlert("Il numero non può contenere caratteri");
+            if(!numero.isEmpty() && !VerificaNumero(numero)) {
+                mostraErrore("Il numero non può contenere caratteri");
                 return;
             }
         }
@@ -236,8 +236,8 @@ public class RubricaController implements Initializable {
         mail[2] = mailField3.getText();
         
         for(String email : mail) {
-            if(!email.isEmpty() && !isValidEmail(email)) {
-                showAlert("La mail non è valida");
+            if(!email.isEmpty() && !VerificaEmail(email)) {
+                mostraErrore("La mail non è valida");
                 return;
             }
         }
@@ -246,7 +246,7 @@ public class RubricaController implements Initializable {
         rubrica.aggiungiContatto(c); 
         listaContatti.add(c); 
         Tabella.getSortOrder().add(surnameClm);
-        clear();
+        pulisci();
     }
 
     /**
@@ -267,7 +267,7 @@ public class RubricaController implements Initializable {
     * @see modificaContatto().
     */
     @FXML
-    private void mod(ActionEvent event) {
+    private void modifica(ActionEvent event) {
         String numeri[] = {numberField1.getText(), numberField2.getText(), numberField3.getText()};
         String mail[] = {mailField1.getText(), mailField2.getText(), mailField3.getText()};
         
@@ -276,7 +276,7 @@ public class RubricaController implements Initializable {
             int i = Tabella.getSelectionModel().getSelectedIndex();
             rubrica.modificaContatto(i, c);
             listaContatti.set(i, c);
-            clear();
+            pulisci();
         }
     }
 
@@ -300,7 +300,7 @@ public class RubricaController implements Initializable {
     * @see eliminaContatto().
     */
     @FXML
-    private void del(ActionEvent event) {
+    private void rimuovi(ActionEvent event) {
         Contatto c = Tabella.getSelectionModel().getSelectedItem();
         rubrica.eliminaContatto(c);
         listaContatti.remove(c);
@@ -325,7 +325,7 @@ public class RubricaController implements Initializable {
     * @see ricercaContatto().
     */
     @FXML
-    private void search(KeyEvent event) {
+    private void cerca(KeyEvent event) {
         
     }
 
@@ -344,7 +344,7 @@ public class RubricaController implements Initializable {
     * @see esportaRubrica().
     */
     @FXML
-    private void esportList(ActionEvent event) {
+    private void esportaLista(ActionEvent event) {
     }
 
     /**
@@ -362,18 +362,18 @@ public class RubricaController implements Initializable {
     * @see importaFile().
     */
     @FXML
-    private void importList(ActionEvent event) {
+    private void importaLista(ActionEvent event) {
     }
     
     
     @FXML
-    private void selection(MouseEvent event) {
+    private void seleziona(MouseEvent event) {
 	Contatto c = Tabella.getSelectionModel().getSelectedItem();
         nameField.setText(c.getNome());
         surnameField.setText(c.getCognome());
-        numberField1.setText(c.getNum(0));
-	numberField2.setText(c.getNum(1));
-        numberField3.setText(c.getNum(2));
+        numberField1.setText(c.getNumero(0));
+	numberField2.setText(c.getNumero(1));
+        numberField3.setText(c.getNumero(2));
         mailField1.setText(c.getMail(0));
         mailField2.setText(c.getMail(1));
         mailField3.setText(c.getMail(2));        

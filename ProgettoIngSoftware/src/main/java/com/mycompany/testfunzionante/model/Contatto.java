@@ -13,7 +13,7 @@ public class Contatto {
     private String nome;
     private String cognome;
     private String[] mail;
-    private String[] num;
+    private String[] numero;
     
     
     /**
@@ -24,10 +24,10 @@ public class Contatto {
     * @param mail Mail del contatto.
     * @param num Numeri del contatto
     */
-    public Contatto(String nome, String cognome, String[] num, String[] mail) {
+    public Contatto(String nome, String cognome, String[] numero, String[] mail) {
         this.nome = nome;
         this.cognome = cognome;
-        this.num = num;
+        this.numero = numero;
         this.mail = mail;
     }
 
@@ -65,8 +65,8 @@ public class Contatto {
     * @param i Indice del Numero.
     * @return num I numeri del Contatto.
     */
-    public String getNum(int i) {
-        return num[i];
+    public String getNumero(int i) {
+        return numero[i];
     }
 
     /**
@@ -101,7 +101,7 @@ public class Contatto {
     * 
     * @param num I nuovi numeri del contatto.
     */
-    public void setNum(String[] num) {
-        this.num = num;
+    public void setNumero(String[] numero) {
+        this.numero = numero;
     }
 }
