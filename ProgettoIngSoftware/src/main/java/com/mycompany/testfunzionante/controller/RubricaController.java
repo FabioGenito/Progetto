@@ -72,6 +72,14 @@ public class RubricaController implements Initializable {
     private TableColumn<Contatto, String> numClm;
     @FXML
     private TableColumn<Contatto, String> mailClm;
+    @FXML
+    private TableColumn<Contatto, String> numClm2;
+    @FXML
+    private TableColumn<Contatto, String> numClm3;
+    @FXML
+    private TableColumn<Contatto, String> mailClm2;
+    @FXML
+    private TableColumn<Contatto, String> mailClm3;
 
     /**
      * Initializes the controller class.
@@ -100,7 +108,7 @@ public class RubricaController implements Initializable {
     * @post Se il numero inserito presenta dei caratteri non numerici viene restituito False
     * 
     */
-  private boolean isValidNumber(String number) {
+    private boolean isValidNumber(String number) {
         return number.matches("\\d+");
     }
     
@@ -119,6 +127,39 @@ public class RubricaController implements Initializable {
     }
     
     /**
+    * @brief Verifica Dati
+    * 
+    * @param[in] numeri Numeri di Telefono da controllare
+    * @param[in] mail Mail da Controllare
+    * 
+    * @post In base ai dati inseriti viene resituto un valore booleano che indica se essi
+    *       sono validi o meno, inoltre viene mostrato un avviso in caso di dati non validi
+    *       contenente il motivo dell'esito negativo.
+    * 
+    */
+    private boolean verifica(String[] numeri, String[] mail) {
+        if(nameField.getText().isEmpty() && surnameField.getText().isEmpty()) {
+            showAlert("Devi compilare almeno un campo tra nome e cognome");
+            return false;
+        }
+        
+        for(String numero : numeri) {
+            if(!numero.isEmpty() && !isValidNumber(numero)) {
+                showAlert("Il numero non può contenere caratteri");
+                return false;
+            }
+        }
+
+        for(String email : mail) {
+            if(!email.isEmpty() && !isValidEmail(email)) {
+                showAlert("La mail non è valida");
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    /**
     * @brief mostra Avviso
     * 
     * @param[in] txt Messaggio di errore 
@@ -132,6 +173,17 @@ public class RubricaController implements Initializable {
         alert.setTitle("Alert");
         alert.setContentText(txt);
         alert.showAndWait();
+    }
+    
+    private void clear() {
+        nameField.clear();
+        surnameField.clear();
+        number1Field.clear();
+        number2Field.clear();
+        number3Field.clear();
+        mail1Field.clear();
+        mail2Field.clear();
+        mail3Field.clear();
     }
     
     
@@ -194,15 +246,7 @@ public class RubricaController implements Initializable {
         rubrica.aggiungiContatto(c); 
         listaContatti.add(c); 
         Tabella.getSortOrder().add(surnameClm);
-
-        nameField.clear();
-        surnameField.clear();
-        number1Field.clear();
-        number2Field.clear();
-        number3Field.clear();
-        mail1Field.clear();
-        mail2Field.clear();
-        mail3Field.clear();
+        clear();
     }
 
     /**
@@ -224,6 +268,16 @@ public class RubricaController implements Initializable {
     */
     @FXML
     private void mod(ActionEvent event) {
+        String numeri[] = {number1Field.getText(), number2Field.getText(), number3Field.getText()};
+        String mail[] = {mail1Field.getText(), mail2Field.getText(), mail3Field.getText()};
+        
+        if(verifica(numeri, mail)) {     // Chiamo la funzione di Verifica delle modifiche effettuate
+            Contatto c = new Contatto(nameField.getText(), surnameField.getText(), numeri, mail); 
+            int i = Tabella.getSelectionModel().getSelectedIndex();
+            rubrica.modificaContatto(i, c);
+            listaContatti.set(i, c);
+            clear();
+        }
     }
 
     /**
@@ -309,6 +363,10 @@ public class RubricaController implements Initializable {
     */
     @FXML
     private void importList(ActionEvent event) {
+    }
+
+    @FXML
+    private void selection(MouseEvent event) {
     }
     
 }

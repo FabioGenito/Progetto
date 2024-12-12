@@ -58,19 +58,4 @@ public class Rubrica{
     public void eliminaContatto(Contatto c) {
         contatti.remove(c);
     }
-
-    /**
-    * Cerca un Contatto nella Lista
-    * 
-    * La ricerca avviene attraverso il passaggio alla funzione 
-    * di una stringa; la funzione ricerca nella Lista tutti i 
-    * contatti il cui cognome o il nome corrisponda a tale stringa 
-    * o inizi per essa 
-    * 
-    * @param s Stringa con cui ricercare corrispondenze nella Lista.
-    * @return lista Lista Filtrata.
-    */
-    public TreeSet<Contatto> ricercaContatto(String s) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

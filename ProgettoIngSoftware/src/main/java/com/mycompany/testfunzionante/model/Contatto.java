@@ -25,7 +25,6 @@ public class Contatto {
     * @param num Numeri del contatto
     */
     public Contatto(String nome, String cognome, String[] num, String[] mail) {
-        //i++;
         this.nome = nome;
         this.cognome = cognome;
         this.num = num;
