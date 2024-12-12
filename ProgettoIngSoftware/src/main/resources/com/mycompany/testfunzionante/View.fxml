@@ -58,8 +58,8 @@
                <items>
                   <HBox alignment="TOP_RIGHT" layoutX="10.0" layoutY="10.0">
                      <children>
-                        <Button fx:id="Esport" mnemonicParsing="false" onAction="#esportList" text="Esporta Rubrica" />
-                        <Button fx:id="Import" mnemonicParsing="false" onAction="#importList" text="Importa Rubrica" />
+                        <Button fx:id="Esport" mnemonicParsing="false" onAction="#esportaLista" text="Esporta Rubrica" />
+                        <Button fx:id="Import" mnemonicParsing="false" onAction="#importaLista" text="Importa Rubrica" />
                      </children>
                   </HBox>
                   <HBox alignment="BASELINE_RIGHT" prefHeight="31.0" prefWidth="299.0">
