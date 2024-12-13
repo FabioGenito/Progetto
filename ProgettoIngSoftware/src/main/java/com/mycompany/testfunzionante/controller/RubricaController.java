@@ -21,7 +21,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import com.mycompany.testfunzionante.model.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
+import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 
 /**
  * FXML Controller class
@@ -157,6 +163,31 @@ public class RubricaController implements Initializable {
             }
         }
         return true;
+    }
+    
+    /**
+    * Crea una Finestra di Dialogo di Info
+    * 
+    * @return Un valore intero che indica quale pulsante è stato premuto 
+    */
+    private int mostraInfo() {
+        // Visualizzazione Dialogo per Scelta tra Sovrascrittura, Aggiunta o Annullo Operazione
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);        
+        alert.setTitle("Scelta");
+        alert.setHeaderText("Scelta");
+        alert.setContentText("Vuoi Sovrascrivere la rubrica attuale o aggiunger i contatti in coda?");
+        
+        // Descrizione dei 3 Pulsanti Personalizzati
+        ButtonType buttonTypeOne = new ButtonType("Sovrascrivi");
+        ButtonType buttonTypeTwo = new ButtonType("Aggiungi");
+        ButtonType buttonTypeCancel = new ButtonType("Annulla");
+        alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeCancel);
+        Optional<ButtonType> risultato = alert.showAndWait();
+        if(risultato.isPresent()) {
+            if(risultato.get() == buttonTypeOne) return 1;
+            if(risultato.get() == buttonTypeTwo) return 2;
+        }
+        return 0;
     }
     
     /**
@@ -356,7 +387,8 @@ public class RubricaController implements Initializable {
     * @see esportaRubrica().
     */
     @FXML
-    private void esportaLista(ActionEvent event) {
+    private void esportaLista(ActionEvent event) throws IOException {
+        GestioneFile.esportaRubrica(rubrica);
     }
 
     /**
@@ -374,9 +406,31 @@ public class RubricaController implements Initializable {
     * @see importaFile().
     */
     @FXML
-    private void importaLista(ActionEvent event) {
+    private void importaLista(ActionEvent event) throws IOException {
+        
+        // Visualizzazione Finestra di scelta File
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Importa Rubrica");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("File CSV", "*.csv"));
+        File file = fileChooser.showOpenDialog(null);
+        if(file == null) return;
+        
+        int risultato = mostraInfo();
+        
+        // Aggiornamento Rubrica in base al pulsante selezionato
+        if(risultato != 1 && risultato != 2) return;
+        if(risultato == 1){
+            listaContatti.clear();
+            rubrica.getContatti().clear();
+        }
+            try {
+                List<Contatto> r = GestioneFile.importaRubrica(file);
+                rubrica.getContatti().addAll(r);
+                listaContatti.addAll(r);
+            } catch (IOException e) {
+                mostraErrore("Errore durante l'importazione del file: " + e.getMessage());
+            }
     }
-    
     
     @FXML
     private void seleziona(MouseEvent event) {
