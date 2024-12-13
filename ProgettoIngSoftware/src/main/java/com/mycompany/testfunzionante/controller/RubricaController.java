@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 
@@ -86,6 +87,8 @@ public class RubricaController implements Initializable {
     private TableColumn<Contatto, String> mailClm2;
     @FXML
     private TableColumn<Contatto, String> mailClm3;
+    @FXML
+    private Label TotalLabel;
 
     /**
      * Initializes the controller class.
@@ -105,6 +108,13 @@ public class RubricaController implements Initializable {
         Tabella.getSortOrder().add(surnameClm);
     }    
 
+    /**
+    * Ottiene il numero totale di Contatti presenti in rubrica.
+    */
+    private void conteggioContatti() {
+        TotalLabel.setText(String.valueOf(listaContatti.size()));
+    }
+    
     /**
     * @brief Verifica del numero di telefono
     * 
@@ -278,6 +288,7 @@ public class RubricaController implements Initializable {
         listaContatti.add(c); 
         Tabella.getSortOrder().add(surnameClm);
         pulisci();
+        conteggioContatti();
     }
 
     /**
@@ -336,6 +347,7 @@ public class RubricaController implements Initializable {
         rubrica.eliminaContatto(c);
         listaContatti.remove(c);
         Tabella.getSortOrder().add(surnameClm);
+        conteggioContatti();
     }
 
     /**
@@ -430,6 +442,7 @@ public class RubricaController implements Initializable {
             } catch (IOException e) {
                 mostraErrore("Errore durante l'importazione del file: " + e.getMessage());
             }
+            conteggioContatti();
     }
     
     @FXML

@@ -37,6 +37,12 @@
                         <Button fx:id="delButton" mnemonicParsing="false" onAction="#rimuovi" text="Elimina" />
                      </children>
                   </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="Totale: " />
+                        <Label fx:id="TotalLabel" alignment="CENTER" contentDisplay="CENTER" textAlignment="CENTER" />
+                     </children>
+                  </HBox>
                </children>
             </VBox>
          </children></AnchorPane>
