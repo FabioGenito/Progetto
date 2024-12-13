@@ -308,6 +308,7 @@ public class RubricaController implements Initializable {
     }
 
     /**
+    * 
     * @brief Ricerca di un Contatto.
     * 
     * Provvede al filtraggio grafico della lista
@@ -326,7 +327,18 @@ public class RubricaController implements Initializable {
     */
     @FXML
     private void cerca(KeyEvent event) {
-        
+        String searchText = searchField.getText().toLowerCase();
+        if (searchText.isEmpty()) listaContatti.setAll(rubrica.getContatti());
+        else {
+            // Filtra i contatti in base al testo inserito
+            ObservableList<Contatto> filteredList = FXCollections.observableArrayList();
+            for (Contatto contatto : rubrica.getContatti()) {
+                boolean matchesName = contatto.getNome().toLowerCase().contains(searchText);
+                boolean matchesSurname = contatto.getCognome().toLowerCase().contains(searchText);
+                if (matchesName || matchesSurname) filteredList.add(contatto);
+            }
+            listaContatti.setAll(filteredList);
+        }
     }
 
     /**
