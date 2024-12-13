@@ -107,7 +107,7 @@ public class RubricaController implements Initializable {
         mailClm2.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getMail(1)));
         mailClm3.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getMail(2)));
         Tabella.getSortOrder().add(surnameClm);
-    }    
+    }  
 
     /**
     * Ottiene il numero totale di Contatti presenti in rubrica.
