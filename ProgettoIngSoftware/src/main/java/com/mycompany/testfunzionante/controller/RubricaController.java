@@ -116,6 +116,14 @@ public class RubricaController implements Initializable {
     }
     
     /**
+    * Ordina la Tabella su criterio Alfabatico, dando priorità prima ai Cognomi e poi ai Nomi.
+    */
+    private void ordinaTabella() {
+        Tabella.getSelectionModel().clearSelection();
+        Tabella.getSortOrder().add(surnameClm);
+    }
+    
+    /**
     * Crea una Finestra di Dialogo di Info
     * 
     * @return Un valore intero che indica quale pulsante è stato premuto 
@@ -156,6 +164,22 @@ public class RubricaController implements Initializable {
         alert.showAndWait();
     }
     
+    /**
+    * Crea una Finestra di Dialogo di Conferma
+    * 
+    * @return un valore che indica se continuare l'operazione o annullarla. 
+    */
+    private Optional<ButtonType> mostraConferma() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);          // Creo un nuovo messaggio di Conferma
+        alert.setTitle("Conferma");
+        alert.setHeaderText("Conferma Eliminazione");
+        alert.setContentText("Vuoi continuare?");
+        return alert.showAndWait();
+    }
+    
+    /**
+    * Pulisce tutti i Fields del modulo e anche l'eventuale selzione effettuata sulla Tabella
+    */
     private void pulisci() {
         nameField.clear();
         surnameField.clear();
@@ -207,6 +231,7 @@ public class RubricaController implements Initializable {
             pulisci();
         }
         else mostraErrore(risultato.getMessaggio());
+        ordinaTabella();
         conteggioContatti();
     }
 
@@ -248,6 +273,7 @@ public class RubricaController implements Initializable {
             rubrica.modificaContatto(i, c);
             listaContatti.set(i, c);
             pulisci();
+            ordinaTabella();
         }
         else mostraErrore(risultato.getMessaggio());
     }
@@ -274,9 +300,18 @@ public class RubricaController implements Initializable {
     @FXML
     private void rimuovi(ActionEvent event) {
         Contatto c = Tabella.getSelectionModel().getSelectedItem();
-        rubrica.eliminaContatto(c);
-        listaContatti.remove(c);
-        Tabella.getSortOrder().add(surnameClm);
+        if (c == null) {
+            mostraErrore("Seleziona un contatto per continuare.");
+            return;
+        }
+        Optional<ButtonType> risultato = mostraConferma();
+        if(risultato.get() != ButtonType.OK || !risultato.isPresent()) return;
+        if(risultato.get() == ButtonType.OK) {                           
+            rubrica.eliminaContatto(c);
+            listaContatti.remove(c);
+            pulisci();
+        }
+        ordinaTabella();
         conteggioContatti();
     }
 
@@ -312,6 +347,7 @@ public class RubricaController implements Initializable {
             }
             listaContatti.setAll(filteredList);
         }
+         ordinaTabella();
     }
 
     /**
@@ -373,6 +409,7 @@ public class RubricaController implements Initializable {
                 mostraErrore("Errore durante l'importazione del file: " + e.getMessage());
             }
             conteggioContatti();
+            ordinaTabella();
     }
     
     @FXML
