@@ -34,7 +34,7 @@ public class Rubrica{
     /**
     * Aggiunge un Contatto alla Lista
     * 
-    * @param c Contatto da Aggiungere alla Lista.
+    * @param[in] c Contatto da Aggiungere alla Lista.
     */  
     public void aggiungiContatto(Contatto c) {
         contatti.add(c);
@@ -43,7 +43,8 @@ public class Rubrica{
     /**
     * Modifica le Informazioni di un Contatto della Lista
     * 
-    * @param c Contatto da Modificare nella Lista.
+    * @param[in] i Indice di inserimento nella Lista
+    * @param[in] c Contatto da Modificare nella Lista.
     */
     public void modificaContatto(int i, Contatto c) {
         contatti.set(i, c);
@@ -52,7 +53,7 @@ public class Rubrica{
     /**
     * Rimuove un Contatto dalla Lista
     * 
-    * @param c Contatto da rimuovere dalla Lista.
+    * @param[in] c Contatto da rimuovere dalla Lista.
     */
     public void eliminaContatto(Contatto c) {
         contatti.remove(c);

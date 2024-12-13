@@ -43,6 +43,38 @@ public class RubricaController implements Initializable {
     @FXML
     private TextField surnameField;
     @FXML
+    private Button AddButton;
+    @FXML
+    private Button modButton;
+    @FXML
+    private Button delButton;
+    @FXML
+    private TextField searchField;
+    @FXML
+    private Button Esport;
+    @FXML
+    private Button Import;
+    @FXML
+    private TableView<Contatto> Tabella;
+    @FXML
+    private TableColumn<Contatto, String> nameClm;
+    @FXML
+    private TableColumn<Contatto, String> surnameClm;
+    @FXML
+    private TableColumn<Contatto, String> numClm;
+    @FXML
+    private TableColumn<Contatto, String> mailClm;
+    private Rubrica rubrica;
+    private ObservableList<Contatto> listaContatti;
+    @FXML
+    private TableColumn<Contatto, String> numClm2;
+    @FXML
+    private TableColumn<Contatto, String> numClm3;
+    @FXML
+    private TableColumn<Contatto, String> mailClm2;
+    @FXML
+    private TableColumn<Contatto, String> mailClm3;
+    @FXML
     private TextField numberField1;
     @FXML
     private TextField numberField2;
@@ -55,41 +87,8 @@ public class RubricaController implements Initializable {
     @FXML
     private TextField mailField3;
     @FXML
-    private Button AddButton;
-    @FXML
-    private Button modButton;
-    @FXML
-    private Button delButton;
-    @FXML
-    private TableView<Contatto> Tabella;
-    @FXML
-    private TableColumn<Contatto, String> nameClm;
-    @FXML
-    private TableColumn<Contatto, String> surnameClm;
-    
-    private Rubrica rubrica;
-    private ObservableList<Contatto> listaContatti;
-    @FXML
-    private TextField searchField;
-    @FXML
-    private Button Esport;
-    @FXML
-    private Button Import;
-    @FXML
-    private TableColumn<Contatto, String> numClm;
-    @FXML
-    private TableColumn<Contatto, String> mailClm;
-    @FXML
-    private TableColumn<Contatto, String> numClm2;
-    @FXML
-    private TableColumn<Contatto, String> numClm3;
-    @FXML
-    private TableColumn<Contatto, String> mailClm2;
-    @FXML
-    private TableColumn<Contatto, String> mailClm3;
-    @FXML
     private Label TotalLabel;
-
+    
     /**
      * Initializes the controller class.
      */
@@ -102,9 +101,11 @@ public class RubricaController implements Initializable {
         nameClm.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNome()));
         surnameClm.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCognome()));
         numClm.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNumero(0)));
+        numClm2.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNumero(1)));
+        numClm3.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNumero(2)));
         mailClm.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getMail(0)));
-        
-        surnameClm.setSortType(TableColumn.SortType.ASCENDING);
+        mailClm2.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getMail(1)));
+        mailClm3.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getMail(2)));
         Tabella.getSortOrder().add(surnameClm);
     }    
 
@@ -189,6 +190,7 @@ public class RubricaController implements Initializable {
         mailField1.clear();
         mailField2.clear();
         mailField3.clear();
+        Tabella.getSelectionModel().clearSelection();
     }
     
     
