@@ -102,11 +102,13 @@ public class RubricaController implements Initializable {
         nameClm.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNome()));
         surnameClm.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCognome()));
         numClm.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNumero(0)));
+        numClm2.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNumero(1)));
+        numClm3.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNumero(2)));
         mailClm.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getMail(0)));
-        
-        surnameClm.setSortType(TableColumn.SortType.ASCENDING);
+        mailClm2.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getMail(1)));
+        mailClm3.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getMail(2)));
         Tabella.getSortOrder().add(surnameClm);
-    }    
+    }  
 
     /**
     * Ottiene il numero totale di Contatti presenti in rubrica.
