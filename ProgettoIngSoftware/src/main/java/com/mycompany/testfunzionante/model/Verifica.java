@@ -28,15 +28,15 @@ public class Verifica {
     * @return mail.matches() esito della verifica 
     */
     public static boolean VerificaEmail(String mail) {
-        return mail.matches("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$");
+        return mail.matches("^[a-zA-Z]+@[a-zA-Z]+\\.[a-zA-Z]{2,}$");
     } 
     
     /***
     * Verifica se il contatto è valido
     * 
-     * @param[in] name il nome da controllare.
-     * @param[in] surname il cognome da controllare.
-     * @param[in] numeri l'array di numeri da controllare.
+    * @param[in] name il nome da controllare.
+    * @param[in] surname il cognome da controllare.
+    * @param[in] numeri l'array di numeri da controllare.
     * @param[in] mail l'array di mail da controllare.
     * 
     * @return mail.matches() esito della verifica 
