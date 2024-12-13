@@ -116,66 +116,6 @@ public class RubricaController implements Initializable {
     }
     
     /**
-    * @brief Verifica del numero di telefono
-    * 
-    * @param[in] number Numero di telefono 
-    * @pre Deve essere inserito una stringa numerica.
-    * 
-    * @post Se il numero inserito presenta dei caratteri non numerici viene restituito False
-    * 
-    */
-    private boolean VerificaNumero(String number) {
-        return number.matches("\\d+");
-    }
-    
-    /**
-    * @brief Verifica e-mail
-    * 
-    * @param[in] mail 
-    * @pre Deve essere inserito una e-mail.
-    * 
-    * @post Se la mail inserita presenta uno spazio iniziale, una "@" iniziale
-    *       un dominio non valido, o l'assenza della "@" viene restituito False
-    * 
-    */
-    private boolean VerificaEmail(String mail) {
-        return mail.matches("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$");
-    }
-    
-    /**
-    * @brief Verifica Dati
-    * 
-    * @param[in] numeri Numeri di Telefono da controllare
-    * @param[in] mail Mail da Controllare
-    * 
-    * @post In base ai dati inseriti viene resituto un valore booleano che indica se essi
-    *       sono validi o meno, inoltre viene mostrato un avviso in caso di dati non validi
-    *       contenente il motivo dell'esito negativo.
-    * 
-    */
-    private boolean verifica(String[] numeri, String[] mail) {
-        if(nameField.getText().isEmpty() && surnameField.getText().isEmpty()) {
-            mostraErrore("Devi compilare almeno un campo tra nome e cognome");
-            return false;
-        }
-        
-        for(String numero : numeri) {
-            if(!numero.isEmpty() && !VerificaNumero(numero)) {
-                mostraErrore("Il numero non può contenere caratteri");
-                return false;
-            }
-        }
-
-        for(String email : mail) {
-            if(!email.isEmpty() && !VerificaEmail(email)) {
-                mostraErrore("La mail non è valida");
-                return false;
-            }
-        }
-        return true;
-    }
-    
-    /**
     * Crea una Finestra di Dialogo di Info
     * 
     * @return Un valore intero che indica quale pulsante è stato premuto 
@@ -252,42 +192,21 @@ public class RubricaController implements Initializable {
     * 
     * @see aggiungiContatto(), isValidEmail(),isValidNumber(),showAlert().
     */
-   @FXML
+    @FXML
     private void aggiungi(ActionEvent event) {
-        String[] numeri = new String[3];
-        numeri[0] = numberField1.getText();
-        numeri[1] = numberField2.getText();
-        numeri[2] = numberField3.getText();
-        
-        if(nameField.getText().isEmpty() && surnameField.getText().isEmpty()) {
-            mostraErrore("Devi compilare almeno un campo tra nome e cognome");
-            return;
-        }
-        
-        for(String numero : numeri) {
-            if(!numero.isEmpty() && !VerificaNumero(numero)) {
-                mostraErrore("Il numero non può contenere caratteri");
-                return;
-            }
-        }
+        String numeri[] = {numberField1.getText(), numberField2.getText(), numberField3.getText()};
+        String mail[] = {mailField1.getText(), mailField2.getText(), mailField3.getText()};
+                
+        // Chiamo la funzione di Verifica dei Dati
+        RisultatiVerifica risultato = Verifica.verifica(nameField.getText(), surnameField.getText(), numeri, mail);
 
-        String[] mail = new String[3];
-        mail[0] = mailField1.getText();
-        mail[1] = mailField2.getText();
-        mail[2] = mailField3.getText();
-        
-        for(String email : mail) {
-            if(!email.isEmpty() && !VerificaEmail(email)) {
-                mostraErrore("La mail non è valida");
-                return;
-            }
+        if(risultato.getValido()) {
+            Contatto c = new Contatto(nameField.getText(), surnameField.getText(), numeri, mail);
+            rubrica.aggiungiContatto(c); 
+            listaContatti.add(c); 
+            pulisci();
         }
-
-        Contatto c = new Contatto(nameField.getText(), surnameField.getText(), mail, numeri);
-        rubrica.aggiungiContatto(c); 
-        listaContatti.add(c); 
-        Tabella.getSortOrder().add(surnameClm);
-        pulisci();
+        else mostraErrore(risultato.getMessaggio());
         conteggioContatti();
     }
 
@@ -313,13 +232,24 @@ public class RubricaController implements Initializable {
         String numeri[] = {numberField1.getText(), numberField2.getText(), numberField3.getText()};
         String mail[] = {mailField1.getText(), mailField2.getText(), mailField3.getText()};
         
-        if(verifica(numeri, mail)) {     // Chiamo la funzione di Verifica delle modifiche effettuate
-            Contatto c = new Contatto(nameField.getText(), surnameField.getText(), numeri, mail); 
+        // Chiamo la funzione di Verifica delle modifiche effettuate
+        RisultatiVerifica risultato = Verifica.verifica(nameField.getText(), surnameField.getText(), numeri, mail);
+        if(risultato.getValido()) {     
+            Contatto c = new Contatto(nameField.getText(), surnameField.getText(), numeri, mail);
+            if (c == null) {
+                mostraErrore("Nessun Contatto selezionato.");
+                return;
+            }
             int i = Tabella.getSelectionModel().getSelectedIndex();
+            if (i < 0) {
+                mostraErrore("Seleziona un contatto per continuare.");
+                return;
+            }
             rubrica.modificaContatto(i, c);
             listaContatti.set(i, c);
             pulisci();
         }
+        else mostraErrore(risultato.getMessaggio());
     }
 
     /**
