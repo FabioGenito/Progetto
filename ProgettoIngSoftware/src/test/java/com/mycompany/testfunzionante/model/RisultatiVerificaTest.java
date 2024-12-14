@@ -7,7 +7,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
- * @author gcucc
+ * @author Gruppo 14
+ * 
  */
 public class RisultatiVerificaTest {
 
