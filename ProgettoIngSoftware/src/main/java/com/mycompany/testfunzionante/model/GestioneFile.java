@@ -35,10 +35,10 @@ public class GestioneFile {
         fileChooser.setTitle("Esporta Rubrica");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("File CSV", "*.csv"));
         File file = fileChooser.showSaveDialog(null);
-        
+        if (file == null) return;
         try( PrintWriter pw = new PrintWriter( new BufferedWriter( new FileWriter(file)))) {
             
-            pw.println("Nome;Cognome;Primo Numero;Secondo Numero;Terzo Numero;Prima Mail; Seconda Mail; Terza Mail");
+            pw.println("Nome;Cognome;Primo Numero;Secondo Numero;Terzo Numero;Prima Mail;Seconda Mail; Terza Mail");
             for(Contatto c : rubrica.getContatti()) {
                 pw.print(c.getNome());
                 pw.append(";");
