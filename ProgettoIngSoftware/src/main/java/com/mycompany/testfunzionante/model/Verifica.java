@@ -28,8 +28,8 @@ public class Verifica {
     * @return mail.matches() esito della verifica 
     */
     public static boolean VerificaEmail(String mail) {
-        return mail.matches("^[a-zA-Z]+@[a-zA-Z]+\\.[a-zA-Z]{2,}$");
-    } 
+        return mail.matches("^[\\w.%+-]+@[\\w.-]+\\.[a-zA-Z]{2,}$");
+    }
     
     /***
     * Verifica se il contatto è valido
@@ -45,7 +45,6 @@ public class Verifica {
         if(name.isEmpty() && surname.isEmpty()) return RisultatiVerifica.risultatoNegativo("Devi compilare almeno un campo tra nome e cognome.");
         
         for(String numero : numeri) {
-            if(numero.isEmpty()) return RisultatiVerifica.risultatoPositivo();
             if(!numero.isEmpty() && !VerificaNumero(numero)) return RisultatiVerifica.risultatoNegativo("Il numero non può avere caratteri non numerici e non deve avere prefissi internazionali");
             if(!numero.isEmpty() && numero.length() < 10) return RisultatiVerifica.risultatoNegativo("Il numero inserito è troppo corto.");
             if(!numero.isEmpty() && numero.length() > 10) return RisultatiVerifica.risultatoNegativo("Il numero inserito è troppo lungo.");
