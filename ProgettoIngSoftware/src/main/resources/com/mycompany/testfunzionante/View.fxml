@@ -50,8 +50,8 @@
          <children>
             <TableView fx:id="Tabella" layoutY="44.0" onMouseClicked="#seleziona" prefHeight="556.0" prefWidth="549.0" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-244.0" AnchorPane.topAnchor="44.0">
               <columns>
-                <TableColumn fx:id="nameClm" prefWidth="120.0" resizable="false" sortType="DESCENDING" text="Nome" />
-                <TableColumn fx:id="surnameClm" prefWidth="120.0" resizable="false" sortType="DESCENDING" text="Cognome" />
+                <TableColumn fx:id="nameClm" prefWidth="120.0" resizable="false" text="Nome" />
+                <TableColumn fx:id="surnameClm" prefWidth="120.0" resizable="false" text="Cognome" />
                   <TableColumn fx:id="numClm" prefWidth="120.0" resizable="false" sortable="false" text="Primo Numero" />
                   <TableColumn fx:id="mailClm" prefWidth="130.0" resizable="false" sortable="false" text="Prima E-Mail" />
                   <TableColumn fx:id="numClm2" prefWidth="120.0" resizable="false" sortable="false" text="Secondo Numero" visible="false" />
@@ -74,7 +74,7 @@
                            <HBox.margin>
                               <Insets />
                            </HBox.margin></Label>
-                        <TextField fx:id="searchField" onKeyTyped="#cerca" prefHeight="31.0" prefWidth="166.0" />
+                        <TextField fx:id="searchField" onKeyReleased="#cerca" prefHeight="31.0" prefWidth="166.0" />
                      </children>
                      <padding>
                         <Insets left="50.0" />
