@@ -349,7 +349,7 @@ public class RubricaController implements Initializable {
             }
             listaContatti.setAll(filteredList);
         }
-         ordinaTabella();
+        ordinaTabella();
     }
 
     /**
@@ -400,22 +400,25 @@ public class RubricaController implements Initializable {
         if(file == null) return;
         
         int risultato = mostraInfo();
-        
         // Aggiornamento Rubrica in base al pulsante selezionato
         if(risultato != 1 && risultato != 2) return;
-        if(risultato == 1){
-            listaContatti.clear();
-            rubrica.getContatti().clear();
-        }
-            try {
-                List<Contatto> r = GestioneFile.importaRubrica(file);
-                rubrica.getContatti().addAll(r);
-                listaContatti.addAll(r);
-            } catch (IOException e) {
-                mostraErrore("Errore durante l'importazione del file: " + e.getMessage());
+        try {
+            List<Contatto> r = GestioneFile.importaRubrica(file);
+            if(r.isEmpty()) {
+                mostraErrore("Il file selezionato non contiene nulla");
+                return;
             }
+            if(risultato == 1){
+                listaContatti.clear();
+                rubrica.getContatti().clear();
+            }
+            rubrica.getContatti().addAll(r);
+            listaContatti.addAll(r);
             conteggioContatti();
             ordinaTabella();
+        } catch(IOException e) {
+            mostraErrore("Il File non è valido");
+        }
     }
     
     @FXML

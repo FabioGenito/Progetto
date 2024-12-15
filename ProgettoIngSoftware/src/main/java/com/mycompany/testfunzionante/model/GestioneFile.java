@@ -77,15 +77,20 @@ public class GestioneFile {
             
             String header = br.readLine(); 
             if (header == null) return r;
-           
+            
             String line;
             while((line = br.readLine()) != null) {
                 if (line.trim().isEmpty()) continue; // Ignora righe vuote
                 String fields[] = line.split(";");
                 String[] numeri = {ottieniCampo(fields, 2), ottieniCampo(fields, 3), ottieniCampo(fields, 4)};
                 String[] mail = {ottieniCampo(fields, 5), ottieniCampo(fields, 6), ottieniCampo(fields, 7)};
-                Contatto c = new Contatto(ottieniCampo(fields, 0), ottieniCampo(fields, 1), numeri, mail);
-                r.add(c);
+                RisultatiVerifica verifica = Verifica.verifica(ottieniCampo(fields, 0), ottieniCampo(fields, 1), numeri, mail);
+                if (verifica.getValido()) {
+                    Contatto c = new Contatto(ottieniCampo(fields, 0), ottieniCampo(fields, 1), numeri, mail);
+                    r.add(c);
+                } else {
+                    throw new IOException();
+                }
             }
         }
         return r;
