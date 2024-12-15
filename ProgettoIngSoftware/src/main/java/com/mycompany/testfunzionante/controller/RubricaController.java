@@ -343,8 +343,8 @@ public class RubricaController implements Initializable {
             // Filtra i contatti in base al testo inserito
             ObservableList<Contatto> filteredList = FXCollections.observableArrayList();
             for (Contatto contatto : rubrica.getContatti()) {
-                boolean matchesName = contatto.getNome().toLowerCase().contains(searchText);
-                boolean matchesSurname = contatto.getCognome().toLowerCase().contains(searchText);
+                boolean matchesName = contatto.getNome().toLowerCase().startsWith(searchText);
+                boolean matchesSurname = contatto.getCognome().toLowerCase().startsWith(searchText);
                 if (matchesName || matchesSurname) filteredList.add(contatto);
             }
             listaContatti.setAll(filteredList);
