@@ -368,6 +368,10 @@ public class RubricaController implements Initializable {
     */
     @FXML
     private void esportaLista(ActionEvent event) throws IOException {
+        if(rubrica.getContatti().size() == 0) {
+            mostraErrore("La rubrica è vuota");
+            return;
+        }
         GestioneFile.esportaRubrica(rubrica);
     }
 
